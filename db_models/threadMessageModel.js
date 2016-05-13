@@ -10,4 +10,4 @@ var ThreadMessage = mongoose.model('threadmessage',
         upvotes: { type:Number, default:0 }
     });
 
-module.exports = PostMessage;
+module.exports = ThreadMessage;
