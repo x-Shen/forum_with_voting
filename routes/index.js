@@ -7,11 +7,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/signup',function(req, res, next){
-  res.render('user_related/signup_login.ejs', {title:'Sign Up', sub_title:'Please Fill the form to Sign Up'});
+  res.render('user_related/signup.ejs', {title:'Sign Up', sub_title:'Please Fill the form to Sign Up'});
 });
 
 router.get('/login', function(req, res, next){
-
+  res.render('user_related/login.ejs', {title:'Log In', sub_title:'Please Fill the form to Log In', error:'None'})
 });
 
 router.get('/newthread', function(req, res, next){
