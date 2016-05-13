@@ -51,6 +51,18 @@ router.post('/userlogin',function(req,res,next){
 
 
 router.get('/newthread', function(req, res, next){
+    var thread = {
+        title: '',
+        CreatedAt: '',
+        id: '',
+        user: '',
+        upvotes:0
+    };
+    var user = req.session.user;
+    if(!user){
+        res.redirect('/login');
+    }
+    res.render('thread_related/new_thread', {title: 'Start a New Thread!', thread, user})
 
 });
 
