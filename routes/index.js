@@ -15,7 +15,7 @@ router.get('/login', function(req, res, next){
 });
 
 router.get('/newthread', function(req, res, next){
-
+  
 });
 
 router.get('/editthread', function(req, res, next){
