@@ -17,6 +17,19 @@
             <th width = '60%'>Title</th>
             <th width = '20%'>User</th>
         </tr>
+        <% for(var i = 0; i < threads.length; i++) { %>
+        <tr>
+            <td>
+                <%= threads[i].title %>
+                <%= threads[i].user%>
+            </td>
+            <td><a href="/threads/<%= threads[i].id %>">View Post</a></td>
+            <td>
+                <a href="/deletePost/<%= threads[i].id %>" class="btn btn-danger">X</a>
+                <a href="/updatePost/<%= threads[i].id %>" class="btn btn-info">Update</a>
+            </td>
+        </tr>
+        <% } %>
     </table>
   </body>
 </html>

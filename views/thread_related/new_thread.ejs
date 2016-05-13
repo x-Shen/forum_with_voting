@@ -8,13 +8,13 @@
 <body>
 <h1><%= title %></h1>
 <div id="container">
-<form method="post" action="/savePage">
+<form method="post" action="/submitthread">
     <input type="hidden" name="id" value="<%= thread.id %>"/>
     <input type="text" value="<%= thread.title %>" name="title" placeholder="Post title" class="form-control" />
     <input type="hidden" name="user" value="<%= user%>" />
     <input type="hidden" name="upvote" value=0 />
     <br />
-    <textarea name="message" placeholder="new message" class="form-control"></textarea>
+    <textarea name="message" placeholder="new message" class="form-control" rows="30" cols="50"></textarea>
     <br />
     <button align type="submit" class="btn btn-success">Save!</button>
 </form>

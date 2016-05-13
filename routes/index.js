@@ -12,7 +12,9 @@ mongoose.connect('mongodb://localhost/test');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Forum with Voting' });
+    Thread.find(function(err,threads){
+        res.render('index', { title: 'Forum with Voting',threads })
+    });
 });
 
 router.get('/signup',function(req, res, next){
@@ -70,7 +72,17 @@ router.get('/editthread', function(req, res, next){
 
 });
 
-router.get('/submitthread', function(req,res,next){
+router.post('/submitthread', function(req,res,next){
+    var newThread = Thread(req.body);
+    newThread.save(function(err){
+        if(err) throw err;
+    });
+    var newMessage = ThreadMessage(req.body);
+    newMessage._thread = newThread;
+    newMessage.save(function(err){
+        if(err) throw err;
+    });
+    res.redirect('/');
 
 });
 
