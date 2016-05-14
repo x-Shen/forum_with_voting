@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1><%= title %></h1>
+<table>
+    <% for(var i = 0; i < messages.length; i++) { %>
+    <tr>
+        <td>
+            <%= messages[i].message %>
+            <%= messages[i].createdAt%>
+        </td>
+    </tr>
+    <% } %>
+</table>
+<form id="m" method="post" action="/saveMessage">
+    <input id= 'id' type="hidden" name="id" value="<%= threadId %>"/>
+    <textarea id='message' name="message" placeholder="new message" class="form-control"></textarea>
+    <br />
+    <button id="new_messages" type="submit" class="btn btn-success">Save!</button>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+</body>
+</html>
