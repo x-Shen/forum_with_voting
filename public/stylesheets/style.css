@@ -16,3 +16,13 @@ a {
 #container {
     max-width: 730px;
 }
+
+.button-container form,
+.button-container form div {
+    display:inline-block;
+}
+
+.button-container button {
+    display: inline-block;
+    vertical-align: middle;
+}

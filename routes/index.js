@@ -86,20 +86,73 @@ router.post('/submitthread', function(req,res,next){
 
 });
 
+router.post('/saveMessage', function(req,res,next){
+    var data = {
+        _thread: req.body.id,
+        message: req.body.message,
+        user: req.session.user
+    };
+
+    var newMessage = ThreadMessage(data);
+    newMessage.save(function(err){
+        if(err) throw err;
+        res.redirect('/threads/'+req.body.id);
+    });
+});
+
+
+router.get('/threads/:id', function(req,res,next){
+    var id = req.params.id;
+    var user = req.session.user;
+    var thread_title;
+    Thread.findById(id,function(err, thread){
+        if (err) throw err;
+        thread_title = thread.title;
+    });
+    ThreadMessage.find({'_thread':id} ,function(err, messages){
+        res.render('thread_related/display_thread',{title: thread_title, messages, threadId: id, user})
+    });
+});
+
 router.post('/editmessage', function(req,res, next){
 
 });
 
 router.post('/upvotethread/:id', function(req,res,next){
+    Thread.findById(req.params.id, function(err, thread){
+        if (err) throw err;
+        thread.upvotes = thread.upvotes+1;
+        thread.save();
+        res.redirect('/');
+    })
+});
+
+router.post('/upvotemessages/:id', function(req, res, next){
+    ThreadMessage.findById(req.params.id, function(err, message){
+        if (err) throw err;
+        message.upvotes = message.upvotes+1;
+        message.save();
+        res.redirect('/threads/'+req.body.id);
+    })
 
 });
 
-router.post('/upvotemessage/:id', function(req, res, next){
-
+router.post('/downvotemessages/:id', function(req, res, next){
+    ThreadMessage.findById(req.params.id, function(err, message){
+        if (err) throw err;
+        message.upvotes = message.upvotes-1;
+        message.save();
+        res.redirect('/threads/'+req.body.id);
+    })
 });
 
 router.post('/downvotethread/:id', function(req, res, next){
-
+    Thread.findById(req.params.id, function(err, thread){
+        if (err) throw err;
+        thread.upvotes = thread.upvotes-1;
+        thread.save();
+        res.redirect('/threads/'+req.body.id);
+    })
 });
 
 module.exports = router;
