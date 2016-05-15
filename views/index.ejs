@@ -21,8 +21,8 @@
             <td>
                 <%= threads[i].upvotes%>
                 <div class="button-container">
-                    <div><form method="post" action = '/upvotethread/<%= threads[i].id %>' ><button><span class="glyphicon glyphicon-arrow-up"></span></button></form></div>
-                <div><form method="post" action="/downvotethread/<%= threads[i].id %>"><div><button><span class="glyphicon glyphicon-arrow-down"></span></button></div></form></div></div>
+                    <form method="post" action = '/upvotethread/<%= threads[i].id %>' ><button><span class="glyphicon glyphicon-arrow-up"></span></button></form>
+                <form method="post" action="/downvotethread/<%= threads[i].id %>"><button><span class="glyphicon glyphicon-arrow-down"></span></button></form></div>
             </td>
             <td>
                 <a href="/threads/<%= threads[i].id %>"><%= threads[i].title %></a>

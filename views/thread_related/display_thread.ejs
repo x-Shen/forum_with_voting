@@ -15,12 +15,12 @@
             <%= messages[i].message %>
             <%= messages[i].createdAt%>
             <%= messages[i].upvotes%>
-            <form method="post" action = '/upvotemessages/<%= messages[i].id %>' >
+            <div class='button-container'><form method="post" action = '/upvotemessages/<%= messages[i].id %>' >
                 <input id= 'id' type="hidden" name="id" value="<%= threadId %>"/>
                 <button><span class="glyphicon glyphicon-arrow-up"></span></button></form>
             <form method="post" action = '/downvotemessages/<%= messages[i].id %>'>
                 <input id= 'id' type="hidden" name="id" value="<%= threadId %>"/>
-                <button><span class="glyphicon glyphicon-arrow-down"></span></button></form>
+                <button><span class="glyphicon glyphicon-arrow-down"></span></button></form></div>
         </td>
 
     </tr>
