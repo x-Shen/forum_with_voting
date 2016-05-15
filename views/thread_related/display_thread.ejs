@@ -9,14 +9,24 @@
 <h1><%= title %></h1>
 <table>
     <% for(var i = 0; i < messages.length; i++) { %>
+
     <tr>
         <td>
             <%= messages[i].message %>
             <%= messages[i].createdAt%>
+            <%= messages[i].upvotes%>
+            <form method="post" action = '/upvotemessages/<%= messages[i].id %>' >
+                <input id= 'id' type="hidden" name="id" value="<%= threadId %>"/>
+                <button><span class="glyphicon glyphicon-arrow-up"></span></button></form>
+            <form method="post" action = '/downvotemessages/<%= messages[i].id %>'>
+                <input id= 'id' type="hidden" name="id" value="<%= threadId %>"/>
+                <button><span class="glyphicon glyphicon-arrow-down"></span></button></form>
         </td>
+
     </tr>
     <% } %>
 </table>
+<br />
 <form id="m" method="post" action="/saveMessage">
     <input id= 'id' type="hidden" name="id" value="<%= threadId %>"/>
     <textarea id='message' name="message" placeholder="new message" class="form-control"></textarea>
