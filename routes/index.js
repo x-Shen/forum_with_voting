@@ -37,7 +37,7 @@ router.post('/userlogin',function(req,res,next){
 
   User.findOne({ email: req.body.email }, function(err, user){
     if (!user){
-      res.render('login',{title:'Log In to Message Board',sub_title:'Please Fill the form to Log In',error:'Username Does Not Exist'});
+      res.render('user_related/login',{title:'Log In to Message Board',sub_title:'Please Fill the form to Log In',error:'Username Does Not Exist'});
     }
     else{
       if(req.body.password === user.password){
@@ -45,7 +45,7 @@ router.post('/userlogin',function(req,res,next){
         res.redirect('/');
       }
       else{
-        res.render('login',{title:'Log In to Message Board',sub_title:'Please Fill the form to Log In', error:'Wrong Password'});
+        res.render('user_related/login',{title:'Log In to Message Board',sub_title:'Please Fill the form to Log In', error:'Wrong Password'});
       }
     }
   })

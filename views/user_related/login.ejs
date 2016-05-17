@@ -5,6 +5,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel ='stylesheet' href="/stylesheets/user_form.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 </head>
 <body data-gr-c-s-loaded="true">
 <div class="container">
@@ -26,7 +27,19 @@
 <div id='error_message' class="alert alert-danger" role="alert">
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
     <span class="sr-only">Error:</span>
-    <%= error%>
+    <p id="error"><%= error%></p>
+    <script>
+        var display_error_message = function(){
+            var error_m =$("#error").html();
+            console.log(error_m);
+            if(error_m!='None'){
+                $('#error_message').css('display','block');
+            }
+        }
+        $(document).ready(function(){display_error_message()});
+    </script>
 </div>
+
+
 </body>
 </html>

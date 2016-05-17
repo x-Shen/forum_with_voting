@@ -16,7 +16,8 @@
             <th width = '60%'>Title</th>
             <th width = '20%'>Actions</th>
         </tr>
-        <% for(var i = 0; i < threads.length; i++) { %>
+        <% threads.sort(function(a,b){return b.upvotes - a.upvotes})
+        for(var i = 0; i < threads.length; i++) { %>
         <tr>
             <td>
                 <%= threads[i].upvotes%>
