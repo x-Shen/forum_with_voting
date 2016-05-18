@@ -69,6 +69,7 @@ router.get('/newthread', function(req, res, next){
 });
 
 router.get('/editthread/:id', function(req, res, next){
+    //TODO: can't edit message problem
     var user = req.session.user;
     var id = req.params.id;
     Thread.findById(id, function(err, thread) {
@@ -135,20 +136,17 @@ router.get('/threads/:id', function(req,res,next){
     });
 });
 
-router.post('/editmessage', function(req, res, next){
+router.post('/editmessage/:id', function(req, res, next){
 
 });
 
 router.get('/deletemessage/:id', function(req, res, next){
-    console.log('inside delete message');
     ThreadMessage.findById(req.params.id, function(err, message){
-        console.log('find message');
-        //does not find the right message becuase it is thread id
-        // TODO: FIX id problem so message get deleted
-        if (req.session.user == message.user){
+        if (req.session.user.id == message.user.id){
             ThreadMessage.findByIdAndRemove(req.params.id,function(err, message){
                 if(err) throw err;
-                res.redirect('/')
+                var thread_id = message._thread;
+                res.redirect('/threads/'+thread_id);
             })
         }
     })
