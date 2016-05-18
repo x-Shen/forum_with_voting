@@ -22,6 +22,7 @@
             <form method="post" action = '/downvotemessages/<%= messages[i].id %>'>
                 <input id= 'id' type="hidden" name="id" value="<%= threadId %>"/>
                 <button><span class="glyphicon glyphicon-arrow-down"></span></button></form></div>
+            <a href="/deletemessage/<%= messages[i].id %>" class="btn btn-danger">X</a>
         </td>
 
     </tr>

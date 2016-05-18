@@ -82,7 +82,7 @@ router.get('/editthread/:id', function(req, res, next){
 });
 
 router.get('/deletethread/:id', function(req, res, next){
-    console.log('inside delete');
+
     Thread.findById(req.params.id, function(err, thread){
         if (req.session.user == thread.user){
             Thread.findByIdAndRemove(req.params.id,function(err, thread){
@@ -139,8 +139,19 @@ router.post('/editmessage', function(req, res, next){
 
 });
 
-router.post('/deletemessage', function(req, res, next){
-
+router.get('/deletemessage/:id', function(req, res, next){
+    console.log('inside delete message');
+    ThreadMessage.findById(req.params.id, function(err, message){
+        console.log('find message');
+        //does not find the right message becuase it is thread id
+        // TODO: FIX id problem so message get deleted
+        if (req.session.user == message.user){
+            ThreadMessage.findByIdAndRemove(req.params.id,function(err, message){
+                if(err) throw err;
+                res.redirect('/')
+            })
+        }
+    })
 });
 
 router.post('/upvotethread/:id', function(req,res,next){
