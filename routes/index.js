@@ -68,8 +68,29 @@ router.get('/newthread', function(req, res, next){
 
 });
 
-router.get('/editthread', function(req, res, next){
+router.get('/editthread/:id', function(req, res, next){
+    var user = req.session.user;
+    var id = req.params.id;
+    Thread.findById(id, function(err, thread) {
+        if(err) throw err;
+        if (user == thread.user){
+            res.render('thread_related/new_thread', {title: 'Update: ' + thread.title, thread, user})}
+        else {
+            res.render('thread_related/no_authorization', {title: 'Unauthorized Action', action:'edit post'})
+        }
+    })
+});
 
+router.get('/deletethread/:id', function(req, res, next){
+    console.log('inside delete');
+    Thread.findById(req.params.id, function(err, thread){
+        if (req.session.user == thread.user){
+            Thread.findByIdAndRemove(req.params.id,function(err, thread){
+                if(err) throw err;
+                res.redirect('/')
+            })
+        }
+    })
 });
 
 router.post('/submitthread', function(req,res,next){
@@ -114,7 +135,11 @@ router.get('/threads/:id', function(req,res,next){
     });
 });
 
-router.post('/editmessage', function(req,res, next){
+router.post('/editmessage', function(req, res, next){
+
+});
+
+router.post('/deletemessage', function(req, res, next){
 
 });
 
