@@ -24,7 +24,12 @@
                 <input id= 'id' type="hidden" name="id" value="<%= threadId %>"/>
                 <button><span class="glyphicon glyphicon-arrow-down"></span></button></form>
                 <a href="/deletemessage/<%= messages[i].id %>" class="btn btn-danger">X</a>
-                <a href="/editmessage/<%= messages[i].id %>" class="btn btn-info">Edit</a></div>
+                <button class="btn btn-info" id="edit">Edit</button>
+                <form id = "change_message" method="post" action="/editmessage/<%= messages[i].id %>">
+                    <textarea id='message' name="message" placeholder="new message" class="form-control"></textarea>
+                    <button class="btn btn-success">Submit</button>
+                </form>
+            </div>
 
         </td>
 
@@ -38,7 +43,18 @@
     <br />
     <button id="new_messages" type="submit" class="btn btn-success">Save!</button>
 </form>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        console.log('in ready');
+        $('#edit').click(function(){
+            console.log('on click');
+            $('#change_message').css('display','block');
+        })
+    }
+    )
+</script>
 </body>
 </html>
